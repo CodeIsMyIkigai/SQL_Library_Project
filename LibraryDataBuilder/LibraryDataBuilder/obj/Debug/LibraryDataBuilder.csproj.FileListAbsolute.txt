@@ -1,0 +1,7 @@
+C:\Users\Chest\myCode\Library\LibraryDataBuilder\LibraryDataBuilder\bin\Debug\LibraryDataBuilder.exe.config
+C:\Users\Chest\myCode\Library\LibraryDataBuilder\LibraryDataBuilder\bin\Debug\LibraryDataBuilder.exe
+C:\Users\Chest\myCode\Library\LibraryDataBuilder\LibraryDataBuilder\bin\Debug\LibraryDataBuilder.pdb
+C:\Users\Chest\myCode\Library\LibraryDataBuilder\LibraryDataBuilder\obj\Debug\LibraryDataBuilder.csprojAssemblyReference.cache
+C:\Users\Chest\myCode\Library\LibraryDataBuilder\LibraryDataBuilder\obj\Debug\LibraryDataBuilder.csproj.CoreCompileInputs.cache
+C:\Users\Chest\myCode\Library\LibraryDataBuilder\LibraryDataBuilder\obj\Debug\LibraryDataBuilder.exe
+C:\Users\Chest\myCode\Library\LibraryDataBuilder\LibraryDataBuilder\obj\Debug\LibraryDataBuilder.pdb
