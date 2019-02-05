@@ -1,7 +1,10 @@
 
-
 CREATE DATABASE db_cmt_library;
 GO
+
+USE db_cmt_library;
+GO
+
 
 begin transaction;
 
