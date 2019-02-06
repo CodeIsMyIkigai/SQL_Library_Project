@@ -43,48 +43,53 @@ namespace LibraryDataBuilder
                         Cmd.Parameters.Add("@Number_Of_Copies", System.Data.SqlDbType.Int);
 
                         // set values to parameters from textboxes
-                        Cmd.Parameters["@BookID"].Value = 1;
+                        Cmd.Parameters["@BookID"].Value = i;
                         Cmd.Parameters["@BranchID"].Value = j;
-                        Cmd.Parameters["@Number_Of_Copies"].Value = rnd.Next(1, 11);
+                        Cmd.Parameters["@Number_Of_Copies"].Value = rnd.Next(2, 11);
 
                         // execute the query and return number of rows affected, should be one
                         int RowsAffected = Cmd.ExecuteNonQuery();
                         totalRows += RowsAffected;
                     }
                 }
-                Console.WriteLine("tbl_BookCopies - Rows Affected" + totalRows);
+                Console.WriteLine("tbl_BookCopies - Rows Affected: " + totalRows);
                 
                 // Book Loans
                 DateTime dateValue;
                 totalRows = 0;    
-                for(int i = 0; i < 45; i++)
+                for(int CardNo = 1; CardNo < 100; CardNo++)
                 {
-                    Cmd = new SqlCommand("INSERT INTO tbl_BookLoans " +
-                            "(BookID, BranchID, CardNo, DateOut, DateDue) " +
-                            "VALUES(@BookID, @BranchID, @CardNo, @DateOut, @DateDue)", conn);
-                    // create your parameters
-                    Cmd.Parameters.Add("@BookID", System.Data.SqlDbType.Int);
-                    Cmd.Parameters.Add("@BranchID", System.Data.SqlDbType.Int);
-                    Cmd.Parameters.Add("@CardNo", System.Data.SqlDbType.Int);
-                    Cmd.Parameters.Add("@DateOut", System.Data.SqlDbType.DateTime);
-                    Cmd.Parameters.Add("@DateDue", System.Data.SqlDbType.DateTime);
+                    int loans = rnd.Next(1,15);
 
-                    // set values to parameters from textboxes
-                    Cmd.Parameters["@BookID"].Value = rnd.Next(1, 126);
-                    Cmd.Parameters["@BranchID"].Value = rnd.Next(1, 126);
-                    Cmd.Parameters["@CardNo"].Value = rnd.Next(1, 126);
+                    for(int i = 0; i < loans; i++)
+                    {
+                        Cmd = new SqlCommand("INSERT INTO tbl_BookLoans " +
+                                "(BookID, BranchID, CardNo, DateOut, DateDue) " +
+                                "VALUES(@BookID, @BranchID, @CardNo, @DateOut, @DateDue)", conn);
+                        // create your parameters
+                        Cmd.Parameters.Add("@BookID", System.Data.SqlDbType.Int);
+                        Cmd.Parameters.Add("@BranchID", System.Data.SqlDbType.Int);
+                        Cmd.Parameters.Add("@CardNo", System.Data.SqlDbType.Int);
+                        Cmd.Parameters.Add("@DateOut", System.Data.SqlDbType.DateTime);
+                        Cmd.Parameters.Add("@DateDue", System.Data.SqlDbType.DateTime);
 
-                    dateValue = new DateTime(2017, 12, 18).AddDays(rnd.Next(1,45));
-                    Cmd.Parameters["@DateOut"].Value = dateValue;
+                        // set values to parameters from textboxes
+                        Cmd.Parameters["@BookID"].Value = rnd.Next(1, 126);
+                        Cmd.Parameters["@BranchID"].Value =  rnd.Next(1, 126);
+                        Cmd.Parameters["@CardNo"].Value = CardNo;
 
-                    dateValue = dateValue.AddDays(20);
-                    Cmd.Parameters["@DateDue"].Value = dateValue;
+                        dateValue = new DateTime(2018, 12, 18).AddDays(rnd.Next(1,45));
+                        Cmd.Parameters["@DateOut"].Value = dateValue;
 
-                    // execute the query and return number of rows affected, should be one
-                    int RowsAffected = Cmd.ExecuteNonQuery();
-                    totalRows += RowsAffected;
+                        dateValue = dateValue.AddDays(20);
+                        Cmd.Parameters["@DateDue"].Value = dateValue;
+
+                        // execute the query and return number of rows affected, should be one
+                        int RowsAffected = Cmd.ExecuteNonQuery();
+                        totalRows += RowsAffected;
+                    }
                 }
-                Console.WriteLine("tbl_BookLoans - Rows Affected" + totalRows);
+                Console.WriteLine("tbl_BookLoans - Rows Affected: " + totalRows);
                 
                 // close connection when done
                 conn.Close();
