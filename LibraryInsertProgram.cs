@@ -89,6 +89,30 @@ namespace LibraryDataBuilder
                         totalRows += RowsAffected;
                     }
                 }
+
+                //Adding some stuff with today's DateDue so that query question 4 has some data.  Lame but true :)
+                Cmd = new SqlCommand("INSERT INTO tbl_BookLoans " +
+                        "(BookID, BranchID, CardNo, DateOut, DateDue) " +
+                        "VALUES(@BookID, @BranchID, @CardNo, @DateOut, @DateDue)", conn);
+                // create your parameters
+                Cmd.Parameters.Add("@BookID", System.Data.SqlDbType.Int);
+                Cmd.Parameters.Add("@BranchID", System.Data.SqlDbType.Int);
+                Cmd.Parameters.Add("@CardNo", System.Data.SqlDbType.Int);
+                Cmd.Parameters.Add("@DateOut", System.Data.SqlDbType.DateTime);
+                Cmd.Parameters.Add("@DateDue", System.Data.SqlDbType.DateTime);
+
+                // set values to parameters from textboxes
+                Cmd.Parameters["@BookID"].Value = rnd.Next(1, 126);
+                Cmd.Parameters["@BranchID"].Value =  rnd.Next(1, 126);
+                Cmd.Parameters["@CardNo"].Value = CardNo;
+
+                dateValue = new DateTime(2018, 12, 18).AddDays(rnd.Next(1,45));
+                Cmd.Parameters["@DateOut"].Value = dateValue;
+
+                dateValue = dateValue.AddDays(20);
+                Cmd.Parameters["@DateDue"].Value = dateValue;
+
+
                 Console.WriteLine("tbl_BookLoans - Rows Affected: " + totalRows);
                 
                 // close connection when done

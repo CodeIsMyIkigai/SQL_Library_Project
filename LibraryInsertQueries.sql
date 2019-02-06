@@ -642,4 +642,28 @@ INSERT INTO [dbo].[tbl_Borrower] ([Name] ,[Address],[Phone])     VALUES
 ('Kylie Billanie','3832 Lotheville Drive','870-275-9364'),
 ('Inglis Shaudfurth','02377 Stephen Center','628-155-4006');
 
+-- Inserting these values to make query problem 4 have some garenteed data.  The rest is random.
+INSERT INTO tbl_BookLoans (BookID, BranchID, CardNo, DateOut, DateDue) VALUES
+(
+	(select BookID from tbl_Books where tbl_Books.Title = 'The Lost Tribe'),
+	(select BranchID from tbl_LibraryBranch where tbl_LibraryBranch.BranchName = 'Sharpstown'),
+	5,
+	DATEADD(day, -20, GETDATE()),
+	GETDATE()
+),
+(
+	(select BookID from tbl_Books where tbl_Books.Title = 'The Lost Tribe'),
+	(select BranchID from tbl_LibraryBranch where tbl_LibraryBranch.BranchName = 'Sharpstown'),
+	6,
+	DATEADD(day, -20, GETDATE()),
+	GETDATE()
+),
+(
+	(select BookID from tbl_Books where tbl_Books.Title = 'The Lost Tribe'),
+	(select BranchID from tbl_LibraryBranch where tbl_LibraryBranch.BranchName = 'Sharpstown'),
+	7,
+	DATEADD(day, -20, GETDATE()),
+	GETDATE()
+)
+
 COMMIT;
